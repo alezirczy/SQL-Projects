@@ -111,6 +111,7 @@ select season, sum(home_goal+away_goal) as goals_per_season
 from match
 group by season
 order by goals_per_season desc
+limit 1;
 
 ````
 <img src="">
