@@ -159,6 +159,7 @@ limit 3;
 
 ***
 ### 6
+[Return](#Questions) 
 **In a pivot table, ¿How many games per season are there in England?** 
 ````sql
 CREATE EXTENSION IF NOT EXISTS tablefunc;
@@ -180,6 +181,7 @@ FROM crosstab(
 
 ***
 ### 7 
+[Return](#Questions) 
 **In a pivot table, ¿How many teams per season are there in each of the following countries: Germany, Italy?** 
 ````sql
 
@@ -205,6 +207,7 @@ WHERE result.name IN ('Germany', 'Italy');
 
 ***
 ### 8
+[Return](#Questions) 
 **For each season ('2011/2012', '2012/2013', '2013/2014', '2014/2015'), find the team that has the best average of goals scored (both home and away) ). Returns the team name and goal average. Sort the results by season.**
 
 ````sql
@@ -240,6 +243,7 @@ ORDER BY
 
 ***
 ### 9
+[Return](#Questions) 
 **Find the country with the greatest absolute goal difference between teams in the '2011/2012' season. Returns the country name and goal difference.** 
 ````sql
 SELECT c.name,sum(abs(home_goal-away_goal)) AS goal_difference 
@@ -255,6 +259,7 @@ LIMIT 1;
 
 ***
 ### 10
+[Return](#Questions) 
 **Find the team that has had the most draws at home in the '2012/2013' season. Returns the team name and the number of home draws.** 
 ````sql
 SELECT t.team_long_name, count(*)
@@ -270,6 +275,7 @@ LIMIT 3;
 
 ***
 ### 11
+[Return](#Questions) 
 **Use a trigger as a function that dynamically updates a results table, reflecting the final performance of the teams in each season, considering that the names of the countries correspond to their respective leagues.** 
 ````sql
 
