@@ -28,18 +28,24 @@ Find the season with the highest total number of goals in history. Returns the s
 [Q5.](#5)
 For each country, find the team that has won the most home games in the '2011/2012' season. Returns the country name and team name.
 ***
-6. In a pivot table, ¿How many games per season are there in England?
+[Q6.](#6)
+In a pivot table, ¿How many games per season are there in England?
 ***
+[Q7.](#7)
 7. In a pivot table, ¿How many teams per season are there in each of the following countries: Germany, Italy?
 ***
-8. For each season ('2011/2012', '2012/2013', '2013/2014', '2014/2015'), find the team that has the best average of goals scored (both home and away) ). Returns the team name ***
+[Q8.](#8)
+For each season ('2011/2012', '2012/2013', '2013/2014', '2014/2015'), find the team that has the best average of goals scored (both home and away) ). Returns the team name ***
 and goal average. Sort the results by season.
 ***
-9. Find the country with the greatest absolute goal difference between teams in the '2011/2012' season. Returns the country name and goal difference.
+[Q9.](#9)
+Find the country with the greatest absolute goal difference between teams in the '2011/2012' season. Returns the country name and goal difference.
 ***
-10. Find the team that has had the most draws at home in the '2012/2013' season. Returns the team name and the number of home draws.
+[Q10.](#10)
+Find the team that has had the most draws at home in the '2012/2013' season. Returns the team name and the number of home draws.
 ***
-11. Use a trigger as a function that dynamically updates a results table, reflecting the final performance of the teams in each season, considering that the names of the countries correspond to their respective leagues.
+[Q11.](#11)
+Use a trigger as a function that dynamically updates a results table, reflecting the final performance of the teams in each season, considering that the names of the countries correspond to their respective leagues.
 
 ## Answers
 
@@ -138,7 +144,7 @@ limit 1;
 ### 5 
 [Return](#Questions) 
 
-**5. For each country, find the team that has won the most home games in the '2011/2012' season. Returns the country name and team name.** 
+**For each country, find the team that has won the most home games in the '2011/2012' season. Returns the country name and team name.** 
 ````sql
 select team_long_name, count(*)
 from match as mhome
@@ -152,8 +158,8 @@ limit 3;
 <img src="https://github.com/alezirczy/Images/blob/main/%231%20-%20Soccer%20Leagues%20-%205.png">
 
 ***
-
-**6. In a pivot table, ¿How many games per season are there in England?** 
+### 6
+**In a pivot table, ¿How many games per season are there in England?** 
 ````sql
 CREATE EXTENSION IF NOT EXISTS tablefunc;
 
@@ -173,8 +179,8 @@ FROM crosstab(
 <img src="https://github.com/alezirczy/Images/blob/main/%231%20-%20Soccer%20Leagues%20-%206.png">
 
 ***
-
-**7. In a pivot table, ¿How many teams per season are there in each of the following countries: Germany, Italy?** 
+### 7 
+**In a pivot table, ¿How many teams per season are there in each of the following countries: Germany, Italy?** 
 ````sql
 
 CREATE EXTENSION IF NOT EXISTS tablefunc;
@@ -198,8 +204,8 @@ WHERE result.name IN ('Germany', 'Italy');
 <img src="https://github.com/alezirczy/Images/blob/main/%231%20-%20Soccer%20Leagues%20-%207.png">
 
 ***
-
-**8. For each season ('2011/2012', '2012/2013', '2013/2014', '2014/2015'), find the team that has the best average of goals scored (both home and away) ). Returns the team name and goal average. Sort the results by season.**
+### 8
+**For each season ('2011/2012', '2012/2013', '2013/2014', '2014/2015'), find the team that has the best average of goals scored (both home and away) ). Returns the team name and goal average. Sort the results by season.**
 
 ````sql
 WITH TeamSeasonStats AS (
@@ -233,8 +239,8 @@ ORDER BY
 <img src="https://github.com/alezirczy/Images/blob/main/%231%20-%20Soccer%20Leagues%20-%208.png">
 
 ***
-
-**9. Find the country with the greatest absolute goal difference between teams in the '2011/2012' season. Returns the country name and goal difference.** 
+### 9
+**Find the country with the greatest absolute goal difference between teams in the '2011/2012' season. Returns the country name and goal difference.** 
 ````sql
 SELECT c.name,sum(abs(home_goal-away_goal)) AS goal_difference 
 FROM match as m
@@ -248,8 +254,8 @@ LIMIT 1;
 <img src="https://github.com/alezirczy/Images/blob/main/%231%20-%20Soccer%20Leagues%20-%209.png">
 
 ***
-
-**10. Find the team that has had the most draws at home in the '2012/2013' season. Returns the team name and the number of home draws.** 
+### 10
+**Find the team that has had the most draws at home in the '2012/2013' season. Returns the team name and the number of home draws.** 
 ````sql
 SELECT t.team_long_name, count(*)
 FROM  match as m 
@@ -263,8 +269,8 @@ LIMIT 3;
 <img src="https://github.com/alezirczy/Images/blob/main/%231%20-%20Soccer%20Leagues%20-%2010.png">
 
 ***
-
-**11. Use a trigger as a function that dynamically updates a results table, reflecting the final performance of the teams in each season, considering that the names of the countries correspond to their respective leagues.** 
+### 11
+**Use a trigger as a function that dynamically updates a results table, reflecting the final performance of the teams in each season, considering that the names of the countries correspond to their respective leagues.** 
 ````sql
 
 CREATE OR REPLACE FUNCTION country_team_rank_by_season(country_name VARCHAR) RETURNS TABLE (
