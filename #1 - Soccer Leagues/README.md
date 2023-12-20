@@ -1,4 +1,4 @@
-- [business Task](#businesstaskk)
+[business Task](#businesstaskk)
 
 
 <img src="">
@@ -12,7 +12,6 @@
 <img src="https://github.com/alezirczy/Images/blob/main/%231%20-%20Soccer%20Leagues%20-%20Tables.png">
 
 ## Questions
-
 
 
 1. In the "match" table, find the season with the highest average goal difference per game. Shows the season and the average goal difference (goals for - goals against) rounded to two decimal places.]
