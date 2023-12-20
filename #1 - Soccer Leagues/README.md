@@ -1,4 +1,33 @@
-<img src="https://user-images.githubusercontent.com/81607668/127727503-9d9e7a25-93cb-4f95-8bd0-20b87cb4b459.png" alt="Image" width="500" height="520">
+
+<img src="">
+
+## Questions
+
+
+1. In the "match" table, find the season with the highest average goal difference per game. Shows the season and the average goal difference (goals for - goals against) rounded to two decimal places.
+***
+2. In the "team" table, find the name of the team (team_long_name) that has the highest average number of goals scored (as a home or away team) in the 2011/2012 season. It also shows the average goals rounded to two decimal places.
+***
+3. In the "team" table, find the name of the team (team_long_name) that has the highest average number of goals scored (as a home or away team) in the 2011/2012 season. It also shows the average goals rounded to two decimal places.
+***
+4. Find the season with the highest total number of goals in history. Returns the season and the total number of goals scored in that season.
+***
+5. For each country, find the team that has won the most home games in the '2011/2012' season. Returns the country name and team name.
+***
+6. In a pivot table, ¿How many games per season are there in each country?
+***
+7. In a pivot table, ¿How many teams per season are there in each of the following countries: England, France, Germany, Italy, Spain?
+***
+8. For each season ('2011/2012', '2012/2013', '2013/2014', '2014/2015'), find the team that has the best average of goals scored (both home and away) ). Returns the team name ***
+and goal average. Sort the results by season.
+***
+9. Find the country with the greatest absolute goal difference between teams in the '2011/2012' season. Returns the country name and goal difference.
+***
+10. Find the team that has had the most draws at home in the '2012/2013' season. Returns the team name and the number of home draws.
+***
+11. Use a trigger for a function that dynamically updates a results table, reflecting the final performance of the teams in each season, considering that the names of the countries correspond to their respective leagues.
+
+## Answers
 
 **1. In the "match" table, find the season with the highest average goal difference per game. Shows the season and the average goal difference (goals for - goals against) rounded to two decimal places.**
 ````sql
