@@ -1,7 +1,3 @@
-[business Task](#businesstaskk)
-
-
-<img src="">
 
 # Welcome to the analysis of the:
 
@@ -374,4 +370,3 @@ SELECT * FROM country_team_rank_by_season('England');
 ````
 <img src="https://github.com/alezirczy/Images/blob/main/%231%20-%20Soccer%20Leagues%20-%2011.png">
 
-### businesstaskk
