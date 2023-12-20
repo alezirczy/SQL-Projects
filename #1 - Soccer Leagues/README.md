@@ -1,6 +1,14 @@
 
 <img src="">
 
+# Welcome to the analysis of the:
+
+<center><img src="https://github.com/alezirczy/Images/blob/main/%231%20-%20Soccer%20Leagues%20-%20European%20Leagues.png"></center>
+
+
+## Entity Relationship Diagram
+<img src="https://github.com/alezirczy/Images/blob/main/%231%20-%20Soccer%20Leagues%20-%20Tables.png">
+
 ## Questions
 
 
@@ -8,7 +16,7 @@
 ***
 2. In the "team" table, find the name of the team (team_long_name) that has the highest average number of goals scored (as a home or away team) in the 2011/2012 season. It also shows the average goals rounded to two decimal places.
 ***
-3. In the "team" table, find the name of the team (team_long_name) that has the highest average number of goals scored (as a home or away team) in the 2011/2012 season. It also shows the average goals rounded to two decimal places.
+3. In the "team" table, find the name of the team (team_long_name) that has the highest average number of goals scored (as a home or away team) in the 2013/2014 season. It also shows the average goals rounded to two decimal places.
 ***
 4. Find the season with the highest total number of goals in history. Returns the season and the total number of goals scored in that season.
 ***
@@ -40,8 +48,7 @@ FROM
 GROUP BY
     m2.season;
 ````
-
-
+<img src="https://github.com/alezirczy/Images/blob/main/%231%20-%20Soccer%20Leagues%20-%201.png">
 
 ***
 
@@ -70,21 +77,22 @@ ORDER BY
     greatest_goal DESC
 limit 1;
 ````
+<img src="https://github.com/alezirczy/Images/blob/main/%231%20-%20Soccer%20Leagues%20-%202.png">
 ***
 
-**3. Get the name of the team that has had the highest goal difference in a specific season (for example, '2011/2012'). The goal difference is calculated as the sum of the goals scored at home minus the goals conceded at home and the goals scored as away minus the goals conceded as a visitor.** 
+**3. Get the name of the team that has had the highest goal difference in a specific season (for example, '2013/2014'). The goal difference is calculated as the sum of the goals scored at home minus the goals conceded at home and the goals scored as away minus the goals conceded as a visitor.** 
 ````sql
 select team_long_name ,coalesce(round(greatest(
 	    coalesce(
 		(select abs(sum(home_goal) - sum(away_goal))
 		 from match as m1
-		 where season= '2011/2012' and m1.hometeam_id=t.team_api_id)
+		 where season= '2013/2014' and m1.hometeam_id=t.team_api_id)
 				)
 		 , 
 		coalesce(
 		(select abs(sum(away_goal) - sum(home_goal))
 		 from match as m2
-		 where season= '2011/2012' and m2.awayteam_id=t.team_api_id)
+		 where season= '2013/2014' and m2.awayteam_id=t.team_api_id)
 				)
 
                                        ),0),0) as max_diff_goals
@@ -93,7 +101,7 @@ from team as t
 order by max_diff_goals desc
 LIMIT 1
 ````
-
+<img src="">
 
 ***
 
@@ -105,6 +113,7 @@ group by season
 order by goals_per_season desc
 
 ````
+<img src="">
 ***
 
 **5. For each country, find the team that has won the most home games in the '2011/2012' season. Returns the country name and team name.** 
@@ -117,6 +126,7 @@ where home_goal>away_goal
 group by team_long_name
 order by count desc
 ````
+<img src="">
 ***
 
 **6. In a pivot table, ¿How many games per season are there in each country?** 
@@ -133,6 +143,7 @@ SELECT * FROM crosstab(
     'SELECT DISTINCT season FROM match ORDER BY season'
 ) AS ct(name text, "2011/2012" bigint, "2012/2013" bigint, "2013/2014" bigint, "2014/2015" bigint);
 ````
+<img src="">
 ***
 **7. In a pivot table, ¿How many teams per season are there in each of the following countries: England, France, Germany, Italy, Spain?** 
 ````sql
@@ -155,6 +166,7 @@ FROM (
 WHERE result.name IN ('England', 'France', 'Germany', 'Italy', 'Spain');
 
 ````
+<img src="">
 ***
 **8. For each season ('2011/2012', '2012/2013', '2013/2014', '2014/2015'), find the team that has the best average of goals scored (both home and away) ). Returns the team name and goal average. Sort the results by season.** 
 ````sql
@@ -184,6 +196,7 @@ WHERE
 ORDER BY
     season;
 ````
+<img src="">
 ***
 **9. Find the country with the greatest absolute goal difference between teams in the '2011/2012' season. Returns the country name and goal difference.** 
 ````sql
@@ -206,8 +219,9 @@ ON m.hometeam_id=t.team_api_id
 WHERE season= '2012/2013' AND home_goal=away_goal  
 GROUP BY t.team_long_name
 ORDER BY count DESC
-
 ````
+<img src="">
+
 ***
 **11. Use a trigger for a function that dynamically updates a results table, reflecting the final performance of the teams in each season, considering that the names of the countries correspond to their respective leagues.** 
 ````sql
@@ -298,5 +312,6 @@ $$ LANGUAGE plpgsql;
 
 -- Calling Function
 SELECT * FROM country_team_rank_by_season('England');
+<img src="">
 ````
 
