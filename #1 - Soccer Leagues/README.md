@@ -33,7 +33,7 @@ and goal average. Sort the results by season.
 ***
 10. Find the team that has had the most draws at home in the '2012/2013' season. Returns the team name and the number of home draws.
 ***
-11. Use a trigger for a function that dynamically updates a results table, reflecting the final performance of the teams in each season, considering that the names of the countries correspond to their respective leagues.
+11. Use a trigger as a function that dynamically updates a results table, reflecting the final performance of the teams in each season, considering that the names of the countries correspond to their respective leagues.
 
 ## Answers
 
@@ -78,6 +78,7 @@ ORDER BY
 limit 1;
 ````
 <img src="https://github.com/alezirczy/Images/blob/main/%231%20-%20Soccer%20Leagues%20-%202.png">
+
 ***
 
 **3. Get the name of the team that has had the highest goal difference in a specific season (for example, '2013/2014'). The goal difference is calculated as the sum of the goals scored at home minus the goals conceded at home and the goals scored as away minus the goals conceded as a visitor.** 
@@ -101,7 +102,7 @@ from team as t
 order by max_diff_goals desc
 LIMIT 1
 ````
-<img src="">
+<img src="https://github.com/alezirczy/Images/blob/main/%231%20-%20Soccer%20Leagues%20-%203.png">
 
 ***
 
@@ -114,7 +115,8 @@ order by goals_per_season desc
 limit 1;
 
 ````
-<img src="">
+<img src="https://github.com/alezirczy/Images/blob/main/%231%20-%20Soccer%20Leagues%20-%204.png">
+
 ***
 
 **5. For each country, find the team that has won the most home games in the '2011/2012' season. Returns the country name and team name.** 
@@ -128,7 +130,8 @@ group by team_long_name
 order by count desc
 limit 3;
 ````
-<img src="">
+<img src="https://github.com/alezirczy/Images/blob/main/%231%20-%20Soccer%20Leagues%20-%205.png">
+
 ***
 
 **6. In a pivot table, ¿How many games per season are there in England?** 
@@ -148,7 +151,7 @@ FROM crosstab(
 ) AS ct(name text, "2011/2012" bigint, "2012/2013" bigint, "2013/2014" bigint, "2014/2015" bigint);
 
 ````
-<img src="">
+<img src="https://github.com/alezirczy/Images/blob/main/%231%20-%20Soccer%20Leagues%20-%206.png">
 
 ***
 
@@ -173,7 +176,7 @@ FROM (
 WHERE result.name IN ('Germany', 'Italy');
 
 ````
-<img src="">
+<img src="https://github.com/alezirczy/Images/blob/main/%231%20-%20Soccer%20Leagues%20-%207.png">
 
 ***
 
@@ -208,21 +211,22 @@ ORDER BY
 ````
 
 
-<img src="">
+<img src="https://github.com/alezirczy/Images/blob/main/%231%20-%20Soccer%20Leagues%20-%208.png">
 
 ***
 
 **9. Find the country with the greatest absolute goal difference between teams in the '2011/2012' season. Returns the country name and goal difference.** 
 ````sql
-SELECT c.name,sum(abs(home_goal-away_goal)) 
+SELECT c.name,sum(abs(home_goal-away_goal)) AS goal_difference 
 FROM match as m
 LEFT JOIN country as c 
 ON m.country_id=c.id 
 WHERE m.season = '2011/2012'
 GROUP BY c.name
-ORDER BY sum DESC
+ORDER BY  goal_difference DESC
+LIMIT 1;
 ````
-<img src="">
+<img src="https://github.com/alezirczy/Images/blob/main/%231%20-%20Soccer%20Leagues%20-%209.png">
 
 ***
 
@@ -235,12 +239,13 @@ ON m.hometeam_id=t.team_api_id
 WHERE season= '2012/2013' AND home_goal=away_goal  
 GROUP BY t.team_long_name
 ORDER BY count DESC
+LIMIT 3;
 ````
-<img src="">
+<img src="https://github.com/alezirczy/Images/blob/main/%231%20-%20Soccer%20Leagues%20-%2010.png">
 
 ***
 
-**11. Use a trigger for a function that dynamically updates a results table, reflecting the final performance of the teams in each season, considering that the names of the countries correspond to their respective leagues.** 
+**11. Use a trigger as a function that dynamically updates a results table, reflecting the final performance of the teams in each season, considering that the names of the countries correspond to their respective leagues.** 
 ````sql
 
 CREATE OR REPLACE FUNCTION country_team_rank_by_season(country_name VARCHAR) RETURNS TABLE (
@@ -329,6 +334,5 @@ $$ LANGUAGE plpgsql;
 
 -- Calling Function
 SELECT * FROM country_team_rank_by_season('England');
-<img src="">
 ````
-
+<img src="https://github.com/alezirczy/Images/blob/main/%231%20-%20Soccer%20Leagues%20-%2011.png">
