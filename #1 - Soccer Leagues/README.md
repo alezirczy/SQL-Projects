@@ -13,17 +13,20 @@
 
 ## Questions
 
-[Q1](#1)
+[Q1.](#1)
 In the "match" table, find the season with the highest average goal difference per game. Shows the season and the average goal difference (goals for - goals against) rounded to two decimal places.
 ***
-[Q2](#2)
+[Q2.](#2)
 In the "team" table, find the name of the team (team_long_name) that has the highest average number of goals scored (as a home or away team) in the 2011/2012 season. It also shows the average goals rounded to two decimal places.
 ***
-3. In the "team" table, find the name of the team (team_long_name) that has the highest average number of goals scored (as a home or away team) in the 2013/2014 season. It also shows the average goals rounded to two decimal places.
+[Q3.](#3)
+In the "team" table, find the name of the team (team_long_name) that has the highest average number of goals scored (as a home or away team) in the 2013/2014 season. It also shows the average goals rounded to two decimal places.
 ***
-4. Find the season with the highest total number of goals in history. Returns the season and the total number of goals scored in that season.
+[Q4.](#4)
+Find the season with the highest total number of goals in history. Returns the season and the total number of goals scored in that season.
 ***
-5. For each country, find the team that has won the most home games in the '2011/2012' season. Returns the country name and team name.
+[Q5.](#5)
+For each country, find the team that has won the most home games in the '2011/2012' season. Returns the country name and team name.
 ***
 6. In a pivot table, ¿How many games per season are there in England?
 ***
@@ -90,8 +93,10 @@ limit 1;
 <img src="https://github.com/alezirczy/Images/blob/main/%231%20-%20Soccer%20Leagues%20-%202.png">
 
 ***
+### 3
+[Return](#Questions) 
 
-**3. Get the name of the team that has had the highest goal difference in a specific season (for example, '2013/2014'). The goal difference is calculated as the sum of the goals scored at home minus the goals conceded at home and the goals scored as away minus the goals conceded as a visitor.** 
+**Get the name of the team that has had the highest goal difference in a specific season (for example, '2013/2014'). The goal difference is calculated as the sum of the goals scored at home minus the goals conceded at home and the goals scored as away minus the goals conceded as a visitor.** 
 ````sql
 select team_long_name ,coalesce(round(greatest(
 	    coalesce(
@@ -115,8 +120,10 @@ LIMIT 1
 <img src="https://github.com/alezirczy/Images/blob/main/%231%20-%20Soccer%20Leagues%20-%203.png">
 
 ***
+### 4
+[Return](#Questions) 
 
-**4. Find the season with the highest total number of goals in history. Returns the season and the total number of goals scored in that season.** 
+**Find the season with the highest total number of goals in history. Returns the season and the total number of goals scored in that season.** 
 ````sql
 select season, sum(home_goal+away_goal) as goals_per_season
 from match
@@ -128,6 +135,8 @@ limit 1;
 <img src="https://github.com/alezirczy/Images/blob/main/%231%20-%20Soccer%20Leagues%20-%204.png">
 
 ***
+### 5 
+[Return](#Questions) 
 
 **5. For each country, find the team that has won the most home games in the '2011/2012' season. Returns the country name and team name.** 
 ````sql
