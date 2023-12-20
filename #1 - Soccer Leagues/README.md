@@ -15,6 +15,8 @@
 
 [Q1](#Q1)
 
+[1](#1)
+
 1. In the "match" table, find the season with the highest average goal difference per game. Shows the season and the average goal difference (goals for - goals against) rounded to two decimal places.
 ***
 2. In the "team" table, find the name of the team (team_long_name) that has the highest average number of goals scored (as a home or away team) in the 2011/2012 season. It also shows the average goals rounded to two decimal places.
@@ -41,6 +43,8 @@ and goal average. Sort the results by season.
 ## Answers
 
 ### Q1
+
+### 1
 
 [Return](#Questions) 
 
