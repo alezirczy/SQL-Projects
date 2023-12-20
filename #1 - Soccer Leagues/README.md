@@ -1,3 +1,5 @@
+- [business Task](#businesstask)
+
 
 <img src="">
 
@@ -12,7 +14,8 @@
 ## Questions
 
 
-1. In the "match" table, find the season with the highest average goal difference per game. Shows the season and the average goal difference (goals for - goals against) rounded to two decimal places.
+
+1. In the "match" table, find the season with the highest average goal difference per game. Shows the season and the average goal difference (goals for - goals against) rounded to two decimal places.]
 ***
 2. In the "team" table, find the name of the team (team_long_name) that has the highest average number of goals scored (as a home or away team) in the 2011/2012 season. It also shows the average goals rounded to two decimal places.
 ***
@@ -36,6 +39,8 @@ and goal average. Sort the results by season.
 11. Use a trigger as a function that dynamically updates a results table, reflecting the final performance of the teams in each season, considering that the names of the countries correspond to their respective leagues.
 
 ## Answers
+
+
 
 **1. In the "match" table, find the season with the highest average goal difference per game. Shows the season and the average goal difference (goals for - goals against) rounded to two decimal places.**
 ````sql
@@ -336,3 +341,5 @@ $$ LANGUAGE plpgsql;
 SELECT * FROM country_team_rank_by_season('England');
 ````
 <img src="https://github.com/alezirczy/Images/blob/main/%231%20-%20Soccer%20Leagues%20-%2011.png">
+
+### businesstask
