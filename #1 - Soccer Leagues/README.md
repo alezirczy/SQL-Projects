@@ -24,7 +24,7 @@
 ***
 6. In a pivot table, ¿How many games per season are there in each country?
 ***
-7. In a pivot table, ¿How many teams per season are there in each of the following countries: England, France, Germany, Italy, Spain?
+7. In a pivot table, ¿How many teams per season are there in each of the following countries: Germany, Italy?
 ***
 8. For each season ('2011/2012', '2012/2013', '2013/2014', '2014/2015'), find the team that has the best average of goals scored (both home and away) ). Returns the team name ***
 and goal average. Sort the results by season.
@@ -126,6 +126,7 @@ on mhome.hometeam_id=t.team_api_id
 where home_goal>away_goal
 group by team_long_name
 order by count desc
+limit 3;
 ````
 <img src="">
 ***
@@ -145,8 +146,10 @@ SELECT * FROM crosstab(
 ) AS ct(name text, "2011/2012" bigint, "2012/2013" bigint, "2013/2014" bigint, "2014/2015" bigint);
 ````
 <img src="">
+
 ***
-**7. In a pivot table, ¿How many teams per season are there in each of the following countries: England, France, Germany, Italy, Spain?** 
+
+**7. In a pivot table, ¿How many teams per season are there in each of the following countries: Germany, Italy?** 
 ````sql
 
 CREATE EXTENSION IF NOT EXISTS tablefunc;
@@ -164,12 +167,15 @@ FROM (
         $$SELECT DISTINCT season FROM match ORDER BY season$$
     ) AS ct(name text, "2011/2012" bigint, "2012/2013" bigint, "2013/2014" bigint, "2014/2015"  bigint)
 ) AS result
-WHERE result.name IN ('England', 'France', 'Germany', 'Italy', 'Spain');
+WHERE result.name IN ('Germany', 'Italy');
 
 ````
 <img src="">
+
 ***
-**8. For each season ('2011/2012', '2012/2013', '2013/2014', '2014/2015'), find the team that has the best average of goals scored (both home and away) ). Returns the team name and goal average. Sort the results by season.** 
+
+**8. For each season ('2011/2012', '2012/2013', '2013/2014', '2014/2015'), find the team that has the best average of goals scored (both home and away) ). Returns the team name and goal average. Sort the results by season.**
+
 ````sql
 WITH TeamSeasonStats AS (
     SELECT
@@ -197,11 +203,14 @@ WHERE
 ORDER BY
     season;
 ````
+
+
 <img src="">
+
 ***
+
 **9. Find the country with the greatest absolute goal difference between teams in the '2011/2012' season. Returns the country name and goal difference.** 
 ````sql
-
 SELECT c.name,sum(abs(home_goal-away_goal)) 
 FROM match as m
 LEFT JOIN country as c 
@@ -210,7 +219,10 @@ WHERE m.season = '2011/2012'
 GROUP BY c.name
 ORDER BY sum DESC
 ````
+<img src="">
+
 ***
+
 **10. Find the team that has had the most draws at home in the '2012/2013' season. Returns the team name and the number of home draws.** 
 ````sql
 SELECT t.team_long_name, count(*)
@@ -224,6 +236,7 @@ ORDER BY count DESC
 <img src="">
 
 ***
+
 **11. Use a trigger for a function that dynamically updates a results table, reflecting the final performance of the teams in each season, considering that the names of the countries correspond to their respective leagues.** 
 ````sql
 
