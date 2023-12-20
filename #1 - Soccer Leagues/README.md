@@ -39,7 +39,9 @@ and goal average. Sort the results by season.
 
 ## Answers
 
-### Q1(#Questions)
+### Q1
+
+### Return(#Questions) 
 
 **1. In the "match" table, find the season with the highest average goal difference per game. Shows the season and the average goal difference (goals for - goals against) rounded to two decimal places.**
 ````sql
