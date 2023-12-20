@@ -22,7 +22,7 @@
 ***
 5. For each country, find the team that has won the most home games in the '2011/2012' season. Returns the country name and team name.
 ***
-6. In a pivot table, ¿How many games per season are there in each country?
+6. In a pivot table, ¿How many games per season are there in England?
 ***
 7. In a pivot table, ¿How many teams per season are there in each of the following countries: Germany, Italy?
 ***
@@ -131,19 +131,22 @@ limit 3;
 <img src="">
 ***
 
-**6. In a pivot table, ¿How many games per season are there in each country?** 
+**6. In a pivot table, ¿How many games per season are there in England?** 
 ````sql
 CREATE EXTENSION IF NOT EXISTS tablefunc;
 
-SELECT * FROM crosstab(
+SELECT *
+FROM crosstab(
     'SELECT DISTINCT c.name, m.season, count(t.team_long_name)
      FROM match AS m
      LEFT JOIN country AS c ON m.country_id = c.id
      FULL JOIN team AS t ON m.hometeam_id = t.team_api_id
+     WHERE c.name = ''England''  
      GROUP BY c.name, m.season
      ORDER BY c.name, m.season',
     'SELECT DISTINCT season FROM match ORDER BY season'
 ) AS ct(name text, "2011/2012" bigint, "2012/2013" bigint, "2013/2014" bigint, "2014/2015" bigint);
+
 ````
 <img src="">
 
@@ -181,7 +184,7 @@ WITH TeamSeasonStats AS (
     SELECT
         m.season,
         t.team_long_name,
-        AVG(m.home_goal + m.away_goal) AS avg_goals,
+        ROUND(AVG(m.home_goal + m.away_goal),1) AS avg_goals,
         RANK() OVER (PARTITION BY m.season ORDER BY AVG(m.home_goal + m.away_goal) DESC) AS goal_rank
     FROM
         match AS m
