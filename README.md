@@ -1,15 +1,5 @@
 # 🗺 Alejandro Zirczy Portfolio
 
-Welcome to my data portfolio! Here, I document some of my analysis of DataBases.
-
-***
-
-## 📚 Table of Contents
-- [SQL](#sql)
-- [PowerBi](#tableau)
-- [Python](#python)
-
-***
 
 # SQL
 
